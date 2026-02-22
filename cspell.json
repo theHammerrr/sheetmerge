@@ -1,0 +1,23 @@
+﻿{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "cspell",
+    "eslint",
+    "husky",
+    "pnpm",
+    "sheetmerge",
+    "turbo"
+  ],
+  "ignorePaths": [
+    "**/.git/**",
+    "**/.husky/**",
+    "**/node_modules/**",
+    "**/coverage/**",
+    "**/dist/**",
+    "**/.turbo/**",
+    "**/pnpm-lock.yaml",
+    "**/package-lock.json",
+    "**/yarn.lock"
+  ]
+}
