@@ -1,9 +1,9 @@
 {
   "displayNumber": 7,
-  "status": "pending",
+  "status": "closed",
   "priority": 1,
   "createdAt": "2026-02-24T18:19:46.696516600+00:00",
-  "updatedAt": "2026-02-24T18:19:46.696516600+00:00",
+  "updatedAt": "2026-02-24T20:03:56.066159900+00:00",
   "compacted": false,
   "draft": false
 }
