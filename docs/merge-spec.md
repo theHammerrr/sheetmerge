@@ -4,9 +4,11 @@ MergeSpec defines how sheetmerge reads inputs, selects sheets, and merges data.
 This schema is the single source of truth for CLI config and web UI export.
 
 ## Versioning
+
 - `version`: must be `"1.0"` for this schema.
 
 ## High-level structure
+
 - `inputs`: array of input files (minimum 2).
 - `sheet`: which sheet + header rows to read.
 - `merge`: merge strategy, keys, and column selection.
@@ -52,6 +54,7 @@ This schema is the single source of truth for CLI config and web UI export.
 ```
 
 ## Notes
+
 - `merge.mode`:
   - `append`: stack rows in order.
   - `union`: de-duplicate by `keys`.

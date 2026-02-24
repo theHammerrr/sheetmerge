@@ -7,14 +7,14 @@ function createValidSpec() {
     inputs: [{ path: './a.xlsx' }, { path: './b.xlsx' }],
     sheet: {
       selector: { name: 'Sheet1' },
-      headerRow: 1
+      headerRow: 1,
     },
     merge: {
-      mode: 'append'
+      mode: 'append',
     },
     output: {
-      format: 'xlsx'
-    }
+      format: 'xlsx',
+    },
   };
 }
 
@@ -37,8 +37,8 @@ describe('validateMergeSpec', () => {
       mode: 'append',
       columns: {
         include: ['a'],
-        exclude: ['b']
-      }
+        exclude: ['b'],
+      },
     };
 
     const result = validateMergeSpec(spec);

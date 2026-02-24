@@ -12,7 +12,7 @@ function checkRequiredFiles(filePath, baseName) {
     hasIndex: fs.existsSync(expectedIndex),
     hasSpec: fs.existsSync(expectedSpec),
     expectedIndex,
-    expectedSpec
+    expectedSpec,
   };
 }
 
@@ -20,9 +20,9 @@ module.exports = {
   meta: {
     type: 'problem',
     docs: {
-      description: 'Enforce function folder structure with index and spec files.'
+      description: 'Enforce function folder structure with index and spec files.',
     },
-    schema: []
+    schema: [],
   },
   create(context) {
     return {
@@ -51,8 +51,9 @@ module.exports = {
         if (folderName !== baseName) {
           context.report({
             node,
-            message: `File name must match folder name (${folderName}).`
+            message: `File name must match folder name (${folderName}).`,
           });
+
           return;
         }
 
@@ -61,17 +62,17 @@ module.exports = {
         if (!required.hasIndex) {
           context.report({
             node,
-            message: 'Missing index.ts in function folder.'
+            message: 'Missing index.ts in function folder.',
           });
         }
 
         if (!required.hasSpec) {
           context.report({
             node,
-            message: `Missing ${baseName}.spec.ts in function folder.`
+            message: `Missing ${baseName}.spec.ts in function folder.`,
           });
         }
-      }
+      },
     };
-  }
+  },
 };

@@ -7,8 +7,9 @@ const validator = createMergeSpecValidator();
 
 export function validateMergeSpec(spec: unknown) {
   const valid = validator(spec);
+
   return {
     valid: Boolean(valid),
-    errors: formatAjvErrors(validator.errors)
+    errors: formatAjvErrors(validator.errors),
   };
 }

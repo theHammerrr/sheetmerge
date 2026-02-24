@@ -66,10 +66,7 @@
       "properties": {
         "selector": {
           "description": "Select a sheet by name or index.",
-          "oneOf": [
-            { "$ref": "#/$defs/sheetByName" },
-            { "$ref": "#/$defs/sheetByIndex" }
-          ]
+          "oneOf": [{ "$ref": "#/$defs/sheetByName" }, { "$ref": "#/$defs/sheetByIndex" }]
         },
         "headerRow": {
           "type": "integer",

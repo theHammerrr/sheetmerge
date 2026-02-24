@@ -6,17 +6,17 @@ module.exports = {
   meta: {
     type: 'problem',
     docs: {
-      description: 'Enforce a maximum number of lines per file.'
+      description: 'Enforce a maximum number of lines per file.',
     },
     schema: [
       {
         type: 'object',
         properties: {
-          max: { type: 'integer', minimum: 1 }
+          max: { type: 'integer', minimum: 1 },
         },
-        additionalProperties: false
-      }
-    ]
+        additionalProperties: false,
+      },
+    ],
   },
   create(context) {
     const options = context.options[0] || {};
@@ -32,9 +32,9 @@ module.exports = {
       Program(node) {
         context.report({
           node,
-          message: `File has ${lineCount} lines (max ${max}).`
+          message: `File has ${lineCount} lines (max ${max}).`,
         });
-      }
+      },
     };
-  }
+  },
 };

@@ -14,8 +14,8 @@ describe('formatAjvErrors', () => {
         keyword: 'type',
         params: {},
         schemaPath: '#/properties/version/type',
-        message: 'should be string'
-      }
+        message: 'should be string',
+      },
     ];
 
     expect(formatAjvErrors(errors)).toEqual(['/version should be string']);

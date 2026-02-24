@@ -9,6 +9,7 @@ export function formatAjvErrors(errors: ErrorObject[] | null | undefined): strin
 
   return errors.map((error) => {
     const instancePath = error.instancePath || '(root)';
+
     return `${instancePath} ${error.message ?? ''}`.trim();
   });
 }

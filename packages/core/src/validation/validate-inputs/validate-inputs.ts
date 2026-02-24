@@ -5,11 +5,7 @@ import { MergeSpecError } from '../../errors/merge-spec-error';
 type InputBuffer = Buffer | Uint8Array | ArrayBuffer;
 
 function isBufferLike(value: unknown): value is InputBuffer {
-  return (
-    Buffer.isBuffer(value) ||
-    value instanceof Uint8Array ||
-    value instanceof ArrayBuffer
-  );
+  return Buffer.isBuffer(value) || value instanceof Uint8Array || value instanceof ArrayBuffer;
 }
 
 export function validateInputs(inputs: unknown): void {

@@ -5,5 +5,5 @@ import { validateMergeSpec } from '../validate-merge-spec';
 
 export const mergeSpecValidation = {
   validateMergeSpec,
-  assertValidMergeSpec
+  assertValidMergeSpec,
 };

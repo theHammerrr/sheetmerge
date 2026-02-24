@@ -7,5 +7,5 @@ import { validateInputs } from './validation/validate-inputs';
 export const sheetmergeCore = {
   MergeSpecError,
   mergeSpecValidation,
-  validateInputs
+  validateInputs,
 };

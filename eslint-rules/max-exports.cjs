@@ -25,6 +25,7 @@ function countNonTypeExports(programNode) {
 
       if (node.declaration) {
         const declarationType = node.declaration.type;
+
         if (
           declarationType === 'TSInterfaceDeclaration' ||
           declarationType === 'TSTypeAliasDeclaration' ||
@@ -45,17 +46,17 @@ module.exports = {
   meta: {
     type: 'problem',
     docs: {
-      description: 'Limit non-type exports per file.'
+      description: 'Limit non-type exports per file.',
     },
     schema: [
       {
         type: 'object',
         properties: {
-          max: { type: 'integer', minimum: 1 }
+          max: { type: 'integer', minimum: 1 },
         },
-        additionalProperties: false
-      }
-    ]
+        additionalProperties: false,
+      },
+    ],
   },
   create(context) {
     const options = context.options[0] || {};
@@ -71,9 +72,9 @@ module.exports = {
 
         context.report({
           node,
-          message: `File has ${exportCount} non-type exports (max ${max}).`
+          message: `File has ${exportCount} non-type exports (max ${max}).`,
         });
-      }
+      },
     };
-  }
+  },
 };

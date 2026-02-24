@@ -6,11 +6,17 @@
 
 [7m[1m[36m RUN [39m[22m[27m [36mv1.6.1[39m [90mF:/GitRepos/sheetmerge/packages/core[39m
 
- [32m✓[39m src/validation/__tests__/validate-inputs.test.ts [2m ([22m[2m4 tests[22m[2m)[22m[90m 7[2mms[22m[39m
- [32m✓[39m src/validation/__tests__/merge-spec.test.ts [2m ([22m[2m4 tests[22m[2m)[22m[90m 5[2mms[22m[39m
+ [32m✓[39m src/errors/merge-spec-error/merge-spec-error.spec.ts [2m ([22m[2m2 tests[22m[2m)[22m[90m 3[2mms[22m[39m
+ [32m✓[39m src/validation/format-ajv-errors/format-ajv-errors.spec.ts [2m ([22m[2m2 tests[22m[2m)[22m[90m 3[2mms[22m[39m
+ [32m✓[39m src/validation/validate-inputs/validate-inputs.spec.ts [2m ([22m[2m4 tests[22m[2m)[22m[90m 5[2mms[22m[39m
+ [32m✓[39m src/validation/load-merge-spec-schema/load-merge-spec-schema.spec.ts [2m ([22m[2m1 test[22m[2m)[22m[90m 4[2mms[22m[39m
+ [32m✓[39m src/validation/create-merge-spec-validator/create-merge-spec-validator.spec.ts [2m ([22m[2m1 test[22m[2m)[22m[90m 96[2mms[22m[39m
+ [32m✓[39m src/validation/validate-merge-spec/validate-merge-spec.spec.ts [2m ([22m[2m3 tests[22m[2m)[22m[90m 10[2mms[22m[39m
+ [32m✓[39m src/validation/assert-valid-merge-spec/assert-valid-merge-spec.spec.ts [2m ([22m[2m1 test[22m[2m)[22m[90m 6[2mms[22m[39m
+ [32m✓[39m src/validation/merge-spec-validation/merge-spec-validation.spec.ts [2m ([22m[2m1 test[22m[2m)[22m[90m 5[2mms[22m[39m
 
-[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
-[2m      Tests [22m [1m[32m8 passed[39m[22m[90m (8)[39m
-[2m   Start at [22m 20:56:23
-[2m   Duration [22m 981ms[2m (transform 131ms, setup 0ms, collect 346ms, tests 12ms, environment 0ms, prepare 768ms)[22m
+[2m Test Files [22m [1m[32m8 passed[39m[22m[90m (8)[39m
+[2m      Tests [22m [1m[32m15 passed[39m[22m[90m (15)[39m
+[2m   Start at [22m 21:52:03
+[2m   Duration [22m 1.06s[2m (transform 410ms, setup 1ms, collect 1.61s, tests 132ms, environment 2ms, prepare 2.48s)[22m
 
