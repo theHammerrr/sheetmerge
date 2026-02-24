@@ -23,7 +23,7 @@ describe('readInputRows', () => {
       buffer,
       {
         sheet: { selector: { name: 'Sheet1' }, headerRow: 1 },
-        output: { includeSource: true },
+        output: { format: 'xlsx', includeSource: true },
       },
       { label: 'A' },
       0
