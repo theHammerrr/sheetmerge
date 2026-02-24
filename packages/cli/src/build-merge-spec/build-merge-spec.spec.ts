@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { buildMergeSpec } from './build-merge-spec';
+import { MergeArgs } from '../cli-types';
 
 const baseArgs = {
   inputs: ['a.xlsx', 'b.xlsx'],
@@ -7,7 +8,7 @@ const baseArgs = {
   mode: 'append',
   format: 'xlsx',
   includeSource: false,
-};
+} satisfies MergeArgs;
 
 describe('buildMergeSpec', () => {
   it('builds a valid spec', () => {

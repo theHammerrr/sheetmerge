@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { applyMergeOverrides } from './apply-merge-overrides';
+import { MergeSpec } from '../cli-types';
 
 const baseSpec = {
   version: '1.0',
@@ -7,7 +8,7 @@ const baseSpec = {
   sheet: { selector: { index: 0 }, headerRow: 1 },
   merge: { mode: 'append' },
   output: { format: 'xlsx', fileName: 'out.xlsx', includeSource: false },
-};
+} satisfies MergeSpec;
 
 describe('applyMergeOverrides', () => {
   it('overrides inputs and output', () => {

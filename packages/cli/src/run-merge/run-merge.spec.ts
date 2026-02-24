@@ -1,7 +1,9 @@
 import { describe, it, expect, vi } from 'vitest';
 import { runMerge } from './run-merge';
+import type { MergeArgs, MergeResult, MergeSpec } from '../cli-types';
+import type { MergePlan } from './run-merge';
 
-const baseArgs = {
+const baseArgs: MergeArgs = {
   inputs: ['a.xlsx', 'b.xlsx'],
   output: 'out.xlsx',
   mode: 'append',
@@ -10,27 +12,30 @@ const baseArgs = {
 
 describe('runMerge', () => {
   it('runs merge and writes output', () => {
-    const resolvePlan = vi.fn(() => ({
-      spec: {
+    const resolvePlan = vi.fn((args: MergeArgs): MergePlan => {
+      const spec: MergeSpec = {
         version: '1.0',
         inputs: [{ path: 'a.xlsx' }, { path: 'b.xlsx' }],
         sheet: { selector: { index: 0 } },
         merge: { mode: 'append' },
         output: { format: 'xlsx' },
-      },
-      outputPath: 'out.xlsx',
-    }));
+      };
+
+      return { spec, outputPath: 'out.xlsx' };
+    });
     const readInputs = vi.fn(() => [Buffer.from('a'), Buffer.from('b')]);
     const writeOutput = vi.fn();
-    const mergeWorkbooks = vi.fn(() => ({
-      buffer: Buffer.from('out'),
-      report: {
-        mode: 'append',
-        inputs: [{ index: 0, rowCount: 1 }],
-        output: { rowCount: 1, format: 'xlsx' },
-        warnings: [],
-      },
-    }));
+    const mergeWorkbooks = vi.fn(
+      (buffers: Buffer[], spec: MergeSpec): MergeResult => ({
+        buffer: Buffer.from('out'),
+        report: {
+          mode: 'append',
+          inputs: [{ index: 0, rowCount: 1 }],
+          output: { rowCount: 1, format: 'xlsx' },
+          warnings: [],
+        },
+      })
+    );
     const format = vi.fn(() => 'report');
     const log = vi.fn();
 

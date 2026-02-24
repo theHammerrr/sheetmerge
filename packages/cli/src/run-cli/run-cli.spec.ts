@@ -1,26 +1,30 @@
 import { describe, it, expect, vi } from 'vitest';
 import { runCli } from './run-cli';
 
-const { mockRunMerge } = vi.hoisted(() => ({
-  mockRunMerge: vi.fn(),
+const { mockRegisterMerge, mockRegisterInspect, mockRegisterValidate } = vi.hoisted(() => ({
+  mockRegisterMerge: vi.fn(),
+  mockRegisterInspect: vi.fn(),
+  mockRegisterValidate: vi.fn(),
 }));
 
-vi.mock('../run-merge', () => ({ runMerge: mockRunMerge }));
+vi.mock('../register-merge-command', () => ({
+  registerMergeCommand: mockRegisterMerge,
+}));
+
+vi.mock('../register-inspect-command', () => ({
+  registerInspectCommand: mockRegisterInspect,
+}));
+
+vi.mock('../register-validate-command', () => ({
+  registerValidateCommand: mockRegisterValidate,
+}));
 
 describe('runCli', () => {
-  it('invokes merge with parsed args', () => {
-    runCli([
-      'node',
-      'sheetmerge',
-      'merge',
-      '--input',
-      'a.xlsx',
-      '--input',
-      'b.xlsx',
-      '--output',
-      'out.xlsx',
-    ]);
+  it('registers cli commands', () => {
+    runCli(['node', 'sheetmerge']);
 
-    expect(mockRunMerge).toHaveBeenCalled();
+    expect(mockRegisterMerge).toHaveBeenCalled();
+    expect(mockRegisterInspect).toHaveBeenCalled();
+    expect(mockRegisterValidate).toHaveBeenCalled();
   });
 });

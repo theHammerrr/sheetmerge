@@ -1,7 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { validateMergeSpec } from './validate-merge-spec';
 
-function createValidSpec() {
+type TestMergeSpec = {
+  version: '1.0';
+  inputs: Array<{ path: string }>;
+  sheet: { selector: { name: string }; headerRow: number };
+  merge: { mode: 'append'; columns?: { include?: string[]; exclude?: string[] } };
+  output: { format: 'xlsx' };
+};
+
+function createValidSpec(): TestMergeSpec {
   return {
     version: '1.0',
     inputs: [{ path: './a.xlsx' }, { path: './b.xlsx' }],

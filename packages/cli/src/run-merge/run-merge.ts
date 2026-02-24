@@ -1,12 +1,14 @@
 'use strict';
 
-import type { MergeArgs, MergeReport, MergeResult, MergeSpec } from '../cli-types';
+import type { MergeArgs, MergeReport, MergeSpec } from '../cli-types';
 import { formatReport } from '../format-report';
 import { readInputBuffers } from '../read-input-buffers';
 import { resolveMergePlan } from '../resolve-merge-plan';
 import { writeOutputFile } from '../write-output-file';
 
 export type MergePlan = { spec: MergeSpec; outputPath: string };
+
+type MergeResult = { buffer: Buffer; report: MergeReport };
 
 export type RunMergeDeps = {
   resolvePlan: (args: MergeArgs) => MergePlan;
