@@ -2,16 +2,22 @@
   "name": "sheetmerge",
   "private": true,
   "version": "0.0.0",
-  "packageManager": "pnpm@10.17.1",
+  "packageManager": "pnpm@9.12.0",
   "scripts": {
     "lint": "eslint .",
     "spellcheck": "cspell .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "turbo test"
   },
   "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/parser": "^7.15.0",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
     "cspell": "^8.14.1",
     "eslint": "^9.0.0",
     "husky": "^9.0.0",
-    "turbo": "^2.0.0"
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
   }
 }

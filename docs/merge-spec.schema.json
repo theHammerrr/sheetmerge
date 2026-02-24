@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sheetmerge.local/schema/merge-spec/1.0",
+  "title": "MergeSpec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "inputs", "sheet", "merge", "output"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "enum": ["1.0"],
+      "description": "MergeSpec schema version."
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/input" },
+      "description": "Input files to merge."
+    },
+    "sheet": {
+      "$ref": "#/$defs/sheetSelector",
+      "description": "Which sheet and rows to read from each input."
+    },
+    "merge": {
+      "$ref": "#/$defs/merge",
+      "description": "Merge strategy and keys."
+    },
+    "output": {
+      "$ref": "#/$defs/output",
+      "description": "Output format and naming."
+    },
+    "validation": {
+      "$ref": "#/$defs/validation",
+      "description": "Input validation behavior."
+    },
+    "report": {
+      "$ref": "#/$defs/report",
+      "description": "Report options for merge output."
+    }
+  },
+  "$defs": {
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Optional identifier for the input."
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Filesystem path to input (CLI usage)."
+        },
+        "label": {
+          "type": "string",
+          "description": "Human-friendly label for reporting."
+        }
+      }
+    },
+    "sheetSelector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selector"],
+      "properties": {
+        "selector": {
+          "description": "Select a sheet by name or index.",
+          "oneOf": [
+            { "$ref": "#/$defs/sheetByName" },
+            { "$ref": "#/$defs/sheetByIndex" }
+          ]
+        },
+        "headerRow": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1,
+          "description": "1-based row index for headers."
+        },
+        "dataStartRow": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "1-based row index where data starts (defaults to headerRow + 1)."
+        }
+      }
+    },
+    "sheetByName": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 }
+      }
+    },
+    "sheetByIndex": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index"],
+      "properties": {
+        "index": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "merge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["append", "union", "join"],
+          "description": "append=stack rows, union=dedupe by keys, join=join rows by keys."
+        },
+        "keys": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Column names used for union/join matching."
+        },
+        "joinType": {
+          "type": "string",
+          "enum": ["inner", "left", "right", "full"],
+          "description": "Only used when mode=join."
+        },
+        "dedupe": {
+          "type": "boolean",
+          "default": false,
+          "description": "When true, remove duplicate rows after merge."
+        },
+        "columns": {
+          "$ref": "#/$defs/columns"
+        }
+      }
+    },
+    "columns": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "not": {
+            "required": ["include", "exclude"]
+          }
+        }
+      ],
+      "properties": {
+        "include": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Columns to include (exclusive with exclude)."
+        },
+        "exclude": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Columns to exclude (exclusive with include)."
+        },
+        "rename": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Map of source column name to output column name."
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format"],
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": ["xlsx", "csv"],
+          "description": "Output file format."
+        },
+        "fileName": {
+          "type": "string",
+          "description": "Output file name (without path)."
+        },
+        "sheetName": {
+          "type": "string",
+          "description": "Output sheet name for XLSX."
+        },
+        "includeSource": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include input source id/label column in output."
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "strictHeaders": {
+          "type": "boolean",
+          "default": true,
+          "description": "Require consistent headers across inputs."
+        },
+        "allowMissingColumns": {
+          "type": "boolean",
+          "default": false,
+          "description": "Allow inputs to miss optional columns."
+        },
+        "coerceTypes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Attempt to coerce types for merge keys."
+        }
+      }
+    },
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "includeRowCounts": {
+          "type": "boolean",
+          "default": true
+        },
+        "includeWarnings": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
+}

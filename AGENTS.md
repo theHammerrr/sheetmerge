@@ -36,6 +36,8 @@ Local plugin lives in `eslint-rules/` and is wired in `eslint.config.cjs`:
 
 - `local/max-file-lines`: max 100 lines per file.
 - `local/max-exports`: max 1 non-type export per file.
+- TypeScript: do not use `as` type assertions (enforced by ESLint).
+- `local/function-structure`: every logic function lives in a folder named after the function, with `<name>/<name>.ts`, `<name>/<name>.spec.ts`, and `<name>/index.ts` (applies across the repo).
 
 Rule files are split so each stays under 100 lines:
 
