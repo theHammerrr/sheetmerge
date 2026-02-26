@@ -31,7 +31,13 @@ const MergeWorkspace: FC<Props> = ({
 }) => {
   return (
     <div className="layout">
-      <MergeInputPanel files={files} warnings={warnings} error={error} onFiles={onFiles} onRemove={onRemove} />
+      <MergeInputPanel
+        files={files}
+        warnings={warnings}
+        error={error}
+        onFiles={onFiles}
+        onRemove={onRemove}
+      />
       <MergeOutputPanel
         report={report}
         downloadUrl={downloadUrl}

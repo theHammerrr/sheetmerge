@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { JoinGroup } from '../join-mapping-types';
+import type { JoinGroup } from '../../join-mapping-types';
 import './JoinMappingActions.css';
 
 type Props = {

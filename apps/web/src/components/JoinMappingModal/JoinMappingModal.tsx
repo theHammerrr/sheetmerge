@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { MouseEvent } from 'react';
-import type { JoinGroup } from '../join-mapping-types';
-import { buildHeaderKey } from '../functions/build-header-key';
-import { describeJoinMapping } from '../functions/describe-join-mapping';
-import { isJoinMappingCompatible } from '../functions/is-join-mapping-compatible';
-import { useJoinMapping } from '../functions/use-join-mapping';
-import JoinMappingActions from './JoinMappingActions';
-import JoinMappingHeader from './JoinMappingHeader';
-import JoinMappingGrid from './JoinMappingGrid';
+import type { JoinGroup } from '../../join-mapping-types';
+import { buildHeaderKey } from '../../functions/build-header-key';
+import { describeJoinMapping } from '../../functions/describe-join-mapping';
+import { isJoinMappingCompatible } from '../../functions/is-join-mapping-compatible';
+import { useJoinMapping } from '../../functions/use-join-mapping';
+import JoinMappingActions from '../JoinMappingActions';
+import JoinMappingHeader from '../JoinMappingHeader';
+import JoinMappingGrid from '../JoinMappingGrid';
 import './JoinMappingModal.css';
 type FileHeaders = {
   name: string;

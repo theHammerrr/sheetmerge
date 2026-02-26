@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import JoinTypeSection from './JoinTypeSection';
-import ModeSection from './ModeSection';
+import JoinTypeSection from '../JoinTypeSection';
+import ModeSection from '../ModeSection';
 import './ConfigPanel.css';
 type MergeConfig = {
   mode: 'append' | 'union' | 'join';
@@ -48,7 +48,9 @@ const ConfigPanel: FC<Props> = ({ config, onChange, onMerge }) => {
         </label>
       ) : null}
       {config.mode === 'join' ? <p className="hint">{t('config.joinHint')}</p> : null}
-      {config.mode === 'join' ? <JoinTypeSection joinType={config.joinType} onJoinTypeChange={setJoinType} /> : null}
+      {config.mode === 'join' ? (
+        <JoinTypeSection joinType={config.joinType} onJoinTypeChange={setJoinType} />
+      ) : null}
       <label>
         {t('config.headerRow')}
         <input

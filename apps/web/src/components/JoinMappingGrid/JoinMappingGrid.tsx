@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import type { JoinLink } from '../join-mapping-types';
-import { buildHeaderKey } from '../functions/build-header-key';
+import type { JoinLink } from '../../join-mapping-types';
+import { buildHeaderKey } from '../../functions/build-header-key';
 import './JoinMappingGrid.css';
 
 type FileHeaders = {
