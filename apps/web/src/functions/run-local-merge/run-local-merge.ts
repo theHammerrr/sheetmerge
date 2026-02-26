@@ -32,7 +32,7 @@ export async function runLocalMerge(files: File[], config: MergeConfig): Promise
     throw new Error('errors.csvOnly');
   }
 
-  if (config.mode !== 'append' && config.keys.trim().length === 0) {
+  if (config.mode === 'union' && config.keys.trim().length === 0) {
     throw new Error('errors.missingKeys');
   }
 
@@ -41,7 +41,7 @@ export async function runLocalMerge(files: File[], config: MergeConfig): Promise
   );
   const headerCheck = validateCompatibility(parsed.map((entry) => entry.headers));
 
-  if (!headerCheck.compatible) {
+  if (config.mode === 'append' && !headerCheck.compatible) {
     throw new Error('errors.headerMismatch');
   }
 

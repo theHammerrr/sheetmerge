@@ -18,7 +18,6 @@ const ConfigPanel: FC<Props> = ({ config, onChange, onMerge }) => {
   const update = (partial: Partial<MergeConfig>) => {
     onChange({ ...config, ...partial });
   };
-
   const setMode = (value: string) => {
     if (value === 'append' || value === 'union' || value === 'join') {
       update({ mode: value });
@@ -42,7 +41,7 @@ const ConfigPanel: FC<Props> = ({ config, onChange, onMerge }) => {
           <option value="join">{t('config.modeOptions.join')}</option>
         </select>
       </label>
-      {config.mode !== 'append' ? (
+      {config.mode === 'union' ? (
         <label>
           {t('config.keys')}
           <input
@@ -52,6 +51,7 @@ const ConfigPanel: FC<Props> = ({ config, onChange, onMerge }) => {
           />
         </label>
       ) : null}
+      {config.mode === 'join' ? <p className="hint">{t('config.joinHint')}</p> : null}
       {config.mode === 'join' ? (
         <label>
           {t('config.joinType')}

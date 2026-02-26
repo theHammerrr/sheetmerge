@@ -19,8 +19,9 @@
     "largeFilesDetected": "Large files detected. Use server mode instead of browser mode.",
     "noFiles": "Please add at least two CSV files.",
     "csvOnly": "Browser mode currently supports CSV files only.",
-    "missingKeys": "Keys are required for union/join modes.",
+    "missingKeys": "Keys are required for union mode.",
     "headerMismatch": "Headers do not match across inputs.",
+    "joinMappingIncomplete": "Match a join column across every file before merging.",
     "unknown": "Unable to merge files."
   },
   "config": {
@@ -28,6 +29,7 @@
     "mode": "Mode",
     "keys": "Keys",
     "keysPlaceholder": "id, email",
+    "joinHint": "Select join columns in the mapping modal after clicking Merge.",
     "joinType": "Join type",
     "headerRow": "Header row",
     "dataStartRow": "Data start row",
@@ -50,6 +52,12 @@
     "empty": "Run a merge to see results.",
     "rowsMerged": "Rows merged: {{count}}",
     "download": "Download merged CSV"
+  },
+  "joinModal": {
+    "title": "Map join columns",
+    "subtitle": "Click a header, then click a matching header in another file.",
+    "confirm": "Use mapping",
+    "cancel": "Cancel"
   },
   "language": {
     "label": "Language",

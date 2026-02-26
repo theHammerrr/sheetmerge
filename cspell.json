@@ -1,7 +1,19 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": ["centy", "cspell", "eslint", "husky", "pnpm", "sheetmerge", "turbo"],
+  "words": [
+    "centy",
+    "cspell",
+    "eslint",
+    "husky",
+    "languagedetector",
+    "Lngs",
+    "papaparse",
+    "pnpm",
+    "sheetmerge",
+    "turbo",
+    "unparse"
+  ],
   "ignorePaths": [
     "**/.git/**",
     "**/.husky/**",
