@@ -6,7 +6,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run -c vitest.config.cjs",
+    "test:coverage": "vitest run -c vitest.config.cjs --coverage"
   },
   "dependencies": {
     "i18next": "^23.12.1",
