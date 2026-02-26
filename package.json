@@ -9,7 +9,8 @@
     "prepare": "husky install",
     "test": "turbo test",
     "format": "prettier . --check",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "dev": "turbo dev"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

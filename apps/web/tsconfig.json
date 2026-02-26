@@ -2,9 +2,16 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "rootDir": "src",
-    "outDir": "dist"
+    "rootDir": "../..",
+    "outDir": "dist",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "baseUrl": ".",
+    "paths": {
+      "sheetmerge-core": ["../../packages/core/src"],
+      "sheetmerge-core/*": ["../../packages/core/src/*"]
+    }
   },
   "include": ["src"],
+  "exclude": ["**/*.spec.ts", "**/*.spec.tsx"],
   "references": []
 }

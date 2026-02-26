@@ -1,0 +1,58 @@
+{
+  "app": {
+    "title": "sheetmerge",
+    "tagline": "Merge CSV sheets locally. Large files? Switch to server mode."
+  },
+  "upload": {
+    "dropTitle": "Drop CSV files",
+    "dropHint": "or click to browse"
+  },
+  "fileList": {
+    "empty": "No files added yet.",
+    "remove": "Remove",
+    "size": "{{size}} KB"
+  },
+  "warnings": {
+    "largeFile": "{{name}} is too large for browser mode. Use server mode."
+  },
+  "errors": {
+    "largeFilesDetected": "Large files detected. Use server mode instead of browser mode.",
+    "noFiles": "Please add at least two CSV files.",
+    "csvOnly": "Browser mode currently supports CSV files only.",
+    "missingKeys": "Keys are required for union/join modes.",
+    "headerMismatch": "Headers do not match across inputs.",
+    "unknown": "Unable to merge files."
+  },
+  "config": {
+    "title": "Merge options",
+    "mode": "Mode",
+    "keys": "Keys",
+    "keysPlaceholder": "id, email",
+    "joinType": "Join type",
+    "headerRow": "Header row",
+    "dataStartRow": "Data start row",
+    "includeSource": "Include source column",
+    "mergeNow": "Merge now",
+    "modeOptions": {
+      "append": "Append",
+      "union": "Union",
+      "join": "Join"
+    },
+    "joinOptions": {
+      "inner": "Inner",
+      "left": "Left",
+      "right": "Right",
+      "full": "Full"
+    }
+  },
+  "report": {
+    "title": "Report",
+    "empty": "Run a merge to see results.",
+    "rowsMerged": "Rows merged: {{count}}",
+    "download": "Download merged CSV"
+  },
+  "language": {
+    "label": "Language",
+    "en": "English"
+  }
+}
