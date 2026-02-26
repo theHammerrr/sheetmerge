@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import './FileList.css';
 
 type Props = {
   files: File[];

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ChangeEvent, DragEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import './UploadDrop.css';
 
 type Props = {
   onFiles: (files: File[]) => void;

@@ -8,10 +8,12 @@ import { useJoinMapping } from '../functions/use-join-mapping';
 import JoinMappingActions from './JoinMappingActions';
 import JoinMappingHeader from './JoinMappingHeader';
 import JoinMappingGrid from './JoinMappingGrid';
+import './JoinMappingModal.css';
 type FileHeaders = {
   name: string;
   headers: string[];
 };
+
 type Props = {
   files: FileHeaders[];
   previousGroups: JoinGroup[] | null;
@@ -25,10 +27,7 @@ export default function JoinMappingModal({ files, previousGroups, onConfirm, onC
   const canReuse = Boolean(previousGroups) && isJoinMappingCompatible(previousGroups ?? [], files);
   const [reusePrevious, setReusePrevious] = useState(canReuse);
   const activePosition = active ? positions[buildHeaderKey(active.fileIndex, active.header)] : undefined;
-  const mappingSummary = useMemo(
-    () => (previousGroups ? describeJoinMapping(previousGroups, files) : ''),
-    [previousGroups, files]
-  );
+  const mappingSummary = useMemo(() => (previousGroups ? describeJoinMapping(previousGroups, files) : ''), [previousGroups, files]);
   useEffect(() => {
     setReusePrevious(canReuse);
   }, [canReuse]);

@@ -1,9 +1,8 @@
 import type { FC } from 'react';
-import ConfigPanel from '../../../../components/ConfigPanel';
-import FileList from '../../../../components/FileList';
-import ReportPanel from '../../../../components/ReportPanel';
-import UploadDrop from '../../../../components/UploadDrop';
 import type { MergeConfig, MergeReport } from '../../../../merge-types';
+import MergeInputPanel from '../merge-input-panel';
+import MergeOutputPanel from '../merge-output-panel';
+import './merge-workspace.css';
 
 type Props = {
   files: File[];
@@ -32,15 +31,14 @@ const MergeWorkspace: FC<Props> = ({
 }) => {
   return (
     <div className="layout">
-      <div className="panel">
-        <UploadDrop onFiles={onFiles} />
-        <FileList files={files} onRemove={onRemove} warnings={warnings} />
-        {error ? <div className="error">{error}</div> : null}
-      </div>
-      <div className="panel">
-        <ConfigPanel config={config} onChange={onConfigChange} onMerge={onMerge} />
-        <ReportPanel report={report} downloadUrl={downloadUrl} />
-      </div>
+      <MergeInputPanel files={files} warnings={warnings} error={error} onFiles={onFiles} onRemove={onRemove} />
+      <MergeOutputPanel
+        report={report}
+        downloadUrl={downloadUrl}
+        config={config}
+        onMerge={onMerge}
+        onConfigChange={onConfigChange}
+      />
     </div>
   );
 };

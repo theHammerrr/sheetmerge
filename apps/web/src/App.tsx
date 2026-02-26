@@ -2,6 +2,7 @@ import LanguageSwitch from './components/LanguageSwitch';
 import { joinMappingFeature } from './features/join-mapping';
 import { mergeFeature } from './features/merge';
 import { useTranslation } from 'react-i18next';
+import './App.css';
 
 function App() {
   const { t } = useTranslation();

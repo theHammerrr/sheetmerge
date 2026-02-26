@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import JoinTypeSection from './JoinTypeSection';
 import ModeSection from './ModeSection';
+import './ConfigPanel.css';
 type MergeConfig = {
   mode: 'append' | 'union' | 'join';
   keys: string;
