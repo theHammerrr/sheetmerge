@@ -26,6 +26,8 @@ function UploadDrop({ onFiles }: Props) {
     if (picked.length > 0) {
       onFiles(picked);
     }
+
+    event.currentTarget.value = '';
   };
 
   return (

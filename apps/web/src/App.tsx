@@ -1,14 +1,12 @@
-import UploadDrop from './components/UploadDrop';
-import FileList from './components/FileList';
-import ConfigPanel from './components/ConfigPanel';
-import ReportPanel from './components/ReportPanel';
 import LanguageSwitch from './components/LanguageSwitch';
-import JoinMappingModal from './components/JoinMappingModal';
+import { joinMappingFeature } from './features/join-mapping';
+import { mergeFeature } from './features/merge';
 import { useTranslation } from 'react-i18next';
-import { useMergeState } from './functions/use-merge-state';
 
 function App() {
   const { t } = useTranslation();
+  const { MergeWorkspace, useMergeState } = mergeFeature;
+  const { JoinMappingModalFeature } = joinMappingFeature;
   const {
     files,
     warnings,
@@ -36,19 +34,20 @@ function App() {
         </div>
         <p>{t('app.tagline')}</p>
       </header>
-      <div className="layout">
-        <div className="panel">
-          <UploadDrop onFiles={onFiles} />
-          <FileList files={files} onRemove={onRemove} warnings={warnings} />
-          {error ? <div className="error">{error}</div> : null}
-        </div>
-        <div className="panel">
-          <ConfigPanel config={config} onChange={onConfigChange} onMerge={onMerge} />
-          <ReportPanel report={report} downloadUrl={downloadUrl} />
-        </div>
-      </div>
+      <MergeWorkspace
+        files={files}
+        warnings={warnings}
+        error={error}
+        report={report}
+        downloadUrl={downloadUrl}
+        config={config}
+        onFiles={onFiles}
+        onRemove={onRemove}
+        onMerge={onMerge}
+        onConfigChange={onConfigChange}
+      />
       {joinModalOpen ? (
-        <JoinMappingModal
+        <JoinMappingModalFeature
           files={joinHeaders}
           previousGroups={previousGroups}
           onCancel={onJoinCancel}

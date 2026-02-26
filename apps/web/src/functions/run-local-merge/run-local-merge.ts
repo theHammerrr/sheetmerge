@@ -1,6 +1,6 @@
 import { parseCsvFile } from '../parse-csv-file';
 import { mergeCsv } from '../merge-csv';
-import { validateCompatibility } from 'sheetmerge-core/inspect/validate-compatibility';
+import { coreWebAdapter } from '../../features/merge/infra/core-web-adapter';
 
 type MergeConfig = {
   mode: 'append' | 'union' | 'join';
@@ -39,7 +39,7 @@ export async function runLocalMerge(files: File[], config: MergeConfig): Promise
   const parsed = await Promise.all(
     files.map((file) => parseCsvFile(file, config.headerRow, config.dataStartRow))
   );
-  const headerCheck = validateCompatibility(parsed.map((entry) => entry.headers));
+  const headerCheck = coreWebAdapter.validateCompatibility(parsed.map((entry) => entry.headers));
 
   if (config.mode === 'append' && !headerCheck.compatible) {
     throw new Error('errors.headerMismatch');

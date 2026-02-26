@@ -21,16 +21,15 @@ export function buildMappingLines(
     const points = group.links
       .map((link) => positions[buildHeaderKey(link.fileIndex, link.header)])
       .filter(Boolean);
-    const origin = points[0];
 
-    if (!origin) {
+    if (points.length < 2) {
       return [];
     }
 
     return points.slice(1).map((point, index) => ({
       key: `${group.id}-${index}`,
       groupId: group.id,
-      from: origin,
+      from: points[index],
       to: point,
     }));
   });

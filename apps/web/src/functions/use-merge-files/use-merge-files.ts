@@ -10,7 +10,12 @@ export function useMergeFiles(t: Translate, onResetJoin: () => void, onResetOutp
   const onFiles = (nextFiles: File[]) => {
     onResetOutput();
     onResetJoin();
-    setFiles(nextFiles);
+    setFiles((current) => {
+      const existing = new Set(current.map((file) => file.name));
+      const additions = nextFiles.filter((file) => !existing.has(file.name));
+
+      return [...current, ...additions];
+    });
   };
 
   const onRemove = (name: string) => {

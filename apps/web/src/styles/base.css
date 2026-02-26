@@ -1,0 +1,85 @@
+:root {
+  color-scheme: light;
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #f6f0e6 0%, #f9f5f0 35%, #f1efe9 100%);
+  color: #1f1a17;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+}
+
+label.inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+input,
+select {
+  padding: 8px 12px;
+  border: 1px solid #cdb9a1;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+button.cta,
+.download {
+  margin-top: 8px;
+  background: #1f1a17;
+  color: #fefaf3;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.ghost {
+  border: 1px solid #b59c85;
+  background: transparent;
+  color: #1f1a17;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.warning,
+.error {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #ffe6d6;
+  color: #7a2f0b;
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+.language {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.language select {
+  min-width: 120px;
+}

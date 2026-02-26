@@ -1,11 +1,9 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { JoinGroup, JoinLink } from '../../join-mapping-types';
-import { addJoinLink } from '../add-join-link';
 import { buildGroupColors } from '../build-group-colors';
 import { buildHeaderKey } from '../build-header-key';
 import { buildMappingLines } from '../build-mapping-lines';
-import { createJoinGroup } from '../create-join-group';
-import { findJoinGroup } from '../find-join-group';
+import { updateJoinGroups } from '../update-join-groups';
 
 type FileHeaders = {
   name: string;
@@ -54,7 +52,6 @@ export function useJoinMapping(files: FileHeaders[]) {
 
   const onHeaderClick = (fileIndex: number, header: string) => {
     const link = { fileIndex, header };
-    const existingGroup = findJoinGroup(groups, link);
 
     if (!active) {
       setActive(link);
@@ -68,20 +65,8 @@ export function useJoinMapping(files: FileHeaders[]) {
       return;
     }
 
-    const baseGroup = findJoinGroup(groups, active);
-    const updated = baseGroup ? addJoinLink(baseGroup, link) : addJoinLink(createJoinGroup(active), link);
-    const nextGroups = baseGroup
-      ? groups.map((group) => (group.id === baseGroup.id ? updated : group))
-      : [...groups, updated];
-
-    setGroups(nextGroups);
+    setGroups((current) => updateJoinGroups(current, active, link));
     setActive(null);
-
-    if (!existingGroup) {
-      return;
-    }
-
-    setGroups((current) => current.filter((group) => group.id !== existingGroup.id));
   };
 
   return { active, groups, groupColors, lines, positions, containerRef, onHeaderClick, registerHeader, setGroups };
