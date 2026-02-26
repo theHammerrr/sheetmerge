@@ -1,29 +1,47 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { MouseEvent } from 'react';
-import { useTranslation } from 'react-i18next';
 import type { JoinGroup } from '../join-mapping-types';
 import { buildHeaderKey } from '../functions/build-header-key';
+import { describeJoinMapping } from '../functions/describe-join-mapping';
+import { isJoinMappingCompatible } from '../functions/is-join-mapping-compatible';
 import { useJoinMapping } from '../functions/use-join-mapping';
+import JoinMappingActions from './JoinMappingActions';
+import JoinMappingHeader from './JoinMappingHeader';
 import JoinMappingGrid from './JoinMappingGrid';
-
 type FileHeaders = {
   name: string;
   headers: string[];
 };
-
 type Props = {
   files: FileHeaders[];
+  previousGroups: JoinGroup[] | null;
   onConfirm: (groups: JoinGroup[]) => void;
   onCancel: () => void;
 };
-
-export default function JoinMappingModal({ files, onConfirm, onCancel }: Props) {
-  const { t } = useTranslation();
-  const { active, groups, groupColors, lines, positions, containerRef, onHeaderClick, registerHeader } =
+export default function JoinMappingModal({ files, previousGroups, onConfirm, onCancel }: Props) {
+  const { active, groups, groupColors, lines, positions, containerRef, onHeaderClick, registerHeader, setGroups } =
     useJoinMapping(files);
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
+  const canReuse = Boolean(previousGroups) && isJoinMappingCompatible(previousGroups ?? [], files);
+  const [reusePrevious, setReusePrevious] = useState(canReuse);
   const activePosition = active ? positions[buildHeaderKey(active.fileIndex, active.header)] : undefined;
+  const mappingSummary = useMemo(
+    () => (previousGroups ? describeJoinMapping(previousGroups, files) : ''),
+    [previousGroups, files]
+  );
+  useEffect(() => {
+    setReusePrevious(canReuse);
+  }, [canReuse]);
 
+  useEffect(() => {
+    if (reusePrevious && canReuse && previousGroups) {
+      setGroups(previousGroups);
+
+      return;
+    }
+
+    setGroups([]);
+  }, [reusePrevious, canReuse, previousGroups, setGroups]);
   const onMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     const container = containerRef.current;
 
@@ -38,10 +56,12 @@ export default function JoinMappingModal({ files, onConfirm, onCancel }: Props) 
   return (
     <div className="modal-backdrop">
       <div className="modal" ref={containerRef} onMouseMove={onMouseMove} onMouseLeave={() => setCursor(null)}>
-        <div className="modal-header">
-          <h2>{t('joinModal.title')}</h2>
-          <p>{t('joinModal.subtitle')}</p>
-        </div>
+        <JoinMappingHeader
+          canReuse={canReuse}
+          reusePrevious={reusePrevious}
+          mappingSummary={mappingSummary}
+          onToggle={setReusePrevious}
+        />
         <JoinMappingGrid
           files={files}
           active={active}
@@ -72,14 +92,7 @@ export default function JoinMappingModal({ files, onConfirm, onCancel }: Props) 
             />
           ) : null}
         </svg>
-        <div className="modal-actions">
-          <button type="button" className="ghost" onClick={onCancel}>
-            {t('joinModal.cancel')}
-          </button>
-          <button type="button" className="cta" onClick={() => onConfirm(groups)}>
-            {t('joinModal.confirm')}
-          </button>
-        </div>
+        <JoinMappingActions groups={groups} onCancel={onCancel} onConfirm={onConfirm} />
       </div>
     </div>
   );

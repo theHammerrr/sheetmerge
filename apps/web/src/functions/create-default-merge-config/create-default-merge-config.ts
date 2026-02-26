@@ -2,7 +2,7 @@ import type { MergeConfig } from '../../merge-types';
 
 export function createDefaultMergeConfig(): MergeConfig {
   return {
-    mode: 'append',
+    mode: 'join',
     keys: '',
     joinType: 'inner',
     includeSource: false,

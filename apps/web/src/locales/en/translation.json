@@ -27,10 +27,23 @@
   "config": {
     "title": "Merge options",
     "mode": "Mode",
+    "modeDescription": "Choose how rows are combined.",
+    "modeHelp": {
+      "append": "Append stacks all rows from all files (requires identical headers).",
+      "union": "Union removes duplicate rows by key and keeps the first match.",
+      "join": "Join matches rows by mapped keys and combines columns."
+    },
     "keys": "Keys",
     "keysPlaceholder": "id, email",
     "joinHint": "Select join columns in the mapping modal after clicking Merge.",
     "joinType": "Join type",
+    "joinDescription": "How to handle rows that do not match a key.",
+    "joinHelp": {
+      "inner": "Inner keeps only rows that match in every file.",
+      "left": "Left keeps all rows from the first file plus matches from others.",
+      "right": "Right keeps all rows from the last file plus matches from others.",
+      "full": "Full keeps all rows from every file."
+    },
     "headerRow": "Header row",
     "dataStartRow": "Data start row",
     "includeSource": "Include source column",
@@ -56,6 +69,9 @@
   "joinModal": {
     "title": "Map join columns",
     "subtitle": "Click a header, then click a matching header in another file.",
+    "reuseLabel": "Reuse previous mapping",
+    "reuseTooltip": "Previous: {{mapping}}",
+    "reuseEmpty": "No previous mapping yet.",
     "confirm": "Use mapping",
     "cancel": "Cancel"
   },

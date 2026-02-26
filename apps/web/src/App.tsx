@@ -18,6 +18,7 @@ function App() {
     config,
     joinModalOpen,
     joinHeaders,
+    previousGroups,
     onFiles,
     onRemove,
     onMerge,
@@ -47,7 +48,12 @@ function App() {
         </div>
       </div>
       {joinModalOpen ? (
-        <JoinMappingModal files={joinHeaders} onCancel={onJoinCancel} onConfirm={onJoinConfirm} />
+        <JoinMappingModal
+          files={joinHeaders}
+          previousGroups={previousGroups}
+          onCancel={onJoinCancel}
+          onConfirm={onJoinConfirm}
+        />
       ) : null}
     </div>
   );

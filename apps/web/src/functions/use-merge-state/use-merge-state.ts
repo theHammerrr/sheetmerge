@@ -12,10 +12,10 @@ export function useMergeState() {
   const { t } = useTranslation();
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [joinHeaders, setJoinHeaders] = useState<Array<{ name: string; headers: string[] }>>([]);
-  const [joinGroups, setJoinGroups] = useState<JoinGroup[] | null>(null);
+  const [previousGroups, setPreviousGroups] = useState<JoinGroup[] | null>(null);
   const resetJoin = () => {
-    setJoinGroups(null);
     setJoinHeaders([]);
+    setJoinModalOpen(false);
   };
   const { error, report, downloadUrl, resetOutput, handleMergeResult, handleError, setErrorMessage } =
     useMergeOutput(t);
@@ -37,20 +37,17 @@ export function useMergeState() {
     }
 
     try {
-      if (config.mode === 'join' && !joinGroups) {
-        const headers = await loadJoinHeaders(files, config.headerRow);
+      if (config.mode === 'join') {
+        const headers =
+          joinHeaders.length > 0 ? joinHeaders : await loadJoinHeaders(files, config.headerRow);
         setJoinHeaders(headers);
         setJoinModalOpen(true);
 
         return;
       }
 
-      if (config.mode === 'join' && joinGroups) {
-        await runJoinMerge(joinGroups);
-      } else {
-        const result = await runLocalMerge(files, config);
-        handleMergeResult(result.csv, result.report);
-      }
+      const result = await runLocalMerge(files, config);
+      handleMergeResult(result.csv, result.report);
     } catch (err) {
       handleError(err);
     }
@@ -61,7 +58,7 @@ export function useMergeState() {
   };
 
   const onJoinConfirm = async (groups: JoinGroup[]) => {
-    setJoinGroups(groups);
+    setPreviousGroups(groups);
     setJoinModalOpen(false);
     resetOutput();
 
@@ -81,6 +78,7 @@ export function useMergeState() {
     config,
     joinModalOpen,
     joinHeaders,
+    previousGroups,
     onFiles,
     onRemove,
     onMerge,

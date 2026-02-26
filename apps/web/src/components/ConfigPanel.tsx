@@ -1,5 +1,7 @@
 import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import JoinTypeSection from './JoinTypeSection';
+import ModeSection from './ModeSection';
 type MergeConfig = {
   mode: 'append' | 'union' | 'join';
   keys: string;
@@ -33,14 +35,7 @@ const ConfigPanel: FC<Props> = ({ config, onChange, onMerge }) => {
   return (
     <div className="config">
       <h2>{t('config.title')}</h2>
-      <label>
-        {t('config.mode')}
-        <select value={config.mode} onChange={(event) => setMode(event.currentTarget.value)}>
-          <option value="append">{t('config.modeOptions.append')}</option>
-          <option value="union">{t('config.modeOptions.union')}</option>
-          <option value="join">{t('config.modeOptions.join')}</option>
-        </select>
-      </label>
+      <ModeSection mode={config.mode} onModeChange={setMode} />
       {config.mode === 'union' ? (
         <label>
           {t('config.keys')}
@@ -52,17 +47,7 @@ const ConfigPanel: FC<Props> = ({ config, onChange, onMerge }) => {
         </label>
       ) : null}
       {config.mode === 'join' ? <p className="hint">{t('config.joinHint')}</p> : null}
-      {config.mode === 'join' ? (
-        <label>
-          {t('config.joinType')}
-          <select value={config.joinType} onChange={(event) => setJoinType(event.currentTarget.value)}>
-            <option value="inner">{t('config.joinOptions.inner')}</option>
-            <option value="left">{t('config.joinOptions.left')}</option>
-            <option value="right">{t('config.joinOptions.right')}</option>
-            <option value="full">{t('config.joinOptions.full')}</option>
-          </select>
-        </label>
-      ) : null}
+      {config.mode === 'join' ? <JoinTypeSection joinType={config.joinType} onJoinTypeChange={setJoinType} /> : null}
       <label>
         {t('config.headerRow')}
         <input
