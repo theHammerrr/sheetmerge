@@ -4,6 +4,7 @@ import ReportPanel from '../../../../components/ReportPanel';
 import type { MergeConfig, MergeReport } from '../../../../merge-types';
 
 type Props = {
+  fileCount: number;
   report: MergeReport | null;
   downloadUrl: string;
   config: MergeConfig;
@@ -11,10 +12,17 @@ type Props = {
   onConfigChange: (config: MergeConfig) => void;
 };
 
-const MergeOutputPanel: FC<Props> = ({ report, downloadUrl, config, onMerge, onConfigChange }) => {
+const MergeOutputPanel: FC<Props> = ({
+  fileCount,
+  report,
+  downloadUrl,
+  config,
+  onMerge,
+  onConfigChange,
+}) => {
   return (
     <div className="panel merge-output-panel">
-      <ConfigPanel config={config} onChange={onConfigChange} onMerge={onMerge} />
+      <ConfigPanel config={config} fileCount={fileCount} onChange={onConfigChange} onMerge={onMerge} />
       <ReportPanel report={report} downloadUrl={downloadUrl} />
     </div>
   );

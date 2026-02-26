@@ -47,6 +47,7 @@
     "headerRow": "Header row",
     "dataStartRow": "Data start row",
     "includeSource": "Include source column",
+    "mergeDisabledHint": "Add at least two files to enable merge.",
     "mergeNow": "Merge now",
     "modeOptions": {
       "append": "Append",

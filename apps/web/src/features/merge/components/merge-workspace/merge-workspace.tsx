@@ -39,6 +39,7 @@ const MergeWorkspace: FC<Props> = ({
         onRemove={onRemove}
       />
       <MergeOutputPanel
+        fileCount={files.length}
         report={report}
         downloadUrl={downloadUrl}
         config={config}

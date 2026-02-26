@@ -13,11 +13,14 @@ type MergeConfig = {
 };
 type Props = {
   config: MergeConfig;
+  fileCount: number;
   onChange: (config: MergeConfig) => void;
   onMerge: () => void;
 };
-const ConfigPanel: FC<Props> = ({ config, onChange, onMerge }) => {
+const ConfigPanel: FC<Props> = ({ config, fileCount, onChange, onMerge }) => {
   const { t } = useTranslation();
+  const canMerge = fileCount >= 2;
+  const mergeTitle = canMerge ? undefined : t('config.mergeDisabledHint');
   const update = (partial: Partial<MergeConfig>) => {
     onChange({ ...config, ...partial });
   };
@@ -77,7 +80,13 @@ const ConfigPanel: FC<Props> = ({ config, onChange, onMerge }) => {
         />
         {t('config.includeSource')}
       </label>
-      <button type="button" onClick={onMerge} className="cta">
+      <button
+        type="button"
+        onClick={onMerge}
+        className="cta merge-button"
+        disabled={!canMerge}
+        title={mergeTitle}
+      >
         {t('config.mergeNow')}
       </button>
     </div>

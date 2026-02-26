@@ -3,3 +3,8 @@
   flex-direction: column;
   gap: 14px;
 }
+
+.merge-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

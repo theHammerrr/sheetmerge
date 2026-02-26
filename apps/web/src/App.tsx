@@ -31,9 +31,9 @@ function App() {
       <header className="hero">
         <div className="hero-top">
           <h1>{t('app.title')}</h1>
-          <LanguageSwitch />
+          {/* <LanguageSwitch /> */}
         </div>
-        <p>{t('app.tagline')}</p>
+        {/* <p>{t('app.tagline')}</p> */}
       </header>
       <MergeWorkspace
         files={files}
