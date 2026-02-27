@@ -12,16 +12,15 @@ const JoinTypeSection: FC<Props> = ({ joinType, onJoinTypeChange }) => {
   return (
     <>
       <label>
-        {t('config.joinType')}
+        <span>{t('config.joinDescription')}</span>
         <select value={joinType} onChange={(event) => onJoinTypeChange(event.currentTarget.value)}>
           <option value="inner">{t('config.joinOptions.inner')}</option>
           <option value="left">{t('config.joinOptions.left')}</option>
           <option value="right">{t('config.joinOptions.right')}</option>
           <option value="full">{t('config.joinOptions.full')}</option>
         </select>
-        <span className="hint">{t('config.joinDescription')}</span>
+        <p className="hint">{t(`config.joinHelp.${joinType}`)}</p>
       </label>
-      <p className="hint">{t(`config.joinHelp.${joinType}`)}</p>
     </>
   );
 };

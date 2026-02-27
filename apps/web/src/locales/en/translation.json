@@ -37,7 +37,7 @@
     "keysPlaceholder": "id, email",
     "joinHint": "Select join columns in the mapping modal after clicking Merge.",
     "joinType": "Join type",
-    "joinDescription": "How to handle rows that do not match a key.",
+    "joinDescription": "Choose how to handle rows that do not match a key.",
     "joinHelp": {
       "inner": "Inner keeps only rows that match in every file.",
       "left": "Left keeps all rows from the first file plus matches from others.",

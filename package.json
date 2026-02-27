@@ -8,6 +8,8 @@
     "spellcheck": "cspell .",
     "prepare": "husky install",
     "test": "turbo test",
+    "test:e2e:web": "pnpm --filter sheetmerge-web test:e2e",
+    "test:e2e:cli": "pnpm --filter sheetmerge-cli test:e2e",
     "format": "prettier . --check",
     "typecheck": "turbo typecheck",
     "dev": "turbo dev"

@@ -3,6 +3,7 @@
 import { MergeSpecError } from '../../errors/merge-spec-error';
 import { mergeSpecValidation } from '../../validation/merge-spec-validation';
 import { validateInputs } from '../../validation/validate-inputs';
+import { applyJoinKeyMaps } from '../apply-join-key-maps';
 import { applyColumns } from '../apply-columns';
 import { mergeRows } from '../merge-rows';
 import { readInputRows } from '../read-input-rows';
@@ -57,7 +58,9 @@ export function mergeWorkbooks(
     readInputRows(input, spec, spec.inputs[index], index)
   );
   const rowSets = inputReads.map((entry) => entry.rows);
-  const mergedRows = mergeRows(rowSets, spec.merge);
+  const mappedRowSets = applyJoinKeyMaps(rowSets, spec.merge.joinKeyMaps);
+  const mappedKeys = spec.merge.joinKeyMaps?.map((map) => map.key);
+  const mergedRows = mergeRows(mappedRowSets, { ...spec.merge, keys: mappedKeys ?? spec.merge.keys });
   const finalRows = applyColumns(mergedRows, spec.merge.columns);
   const buffer = writeOutputBuffer(finalRows, spec.output);
   const report: MergeReport = {

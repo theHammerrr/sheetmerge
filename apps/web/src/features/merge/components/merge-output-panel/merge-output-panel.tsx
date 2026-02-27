@@ -22,7 +22,12 @@ const MergeOutputPanel: FC<Props> = ({
 }) => {
   return (
     <div className="panel merge-output-panel">
-      <ConfigPanel config={config} fileCount={fileCount} onChange={onConfigChange} onMerge={onMerge} />
+      <ConfigPanel
+        config={config}
+        fileCount={fileCount}
+        onChange={onConfigChange}
+        onMerge={onMerge}
+      />
       <ReportPanel report={report} downloadUrl={downloadUrl} />
     </div>
   );

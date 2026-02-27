@@ -37,4 +37,29 @@ describe('mergeWorkbooks', () => {
     expect(result.report.output.rowCount).toBe(2);
     expect(count).toBe(3);
   });
+
+  it('supports joinKeyMaps when join keys differ per input', () => {
+    const bufferA = createWorkbookBuffer([
+      ['id_a', 'name'],
+      [1, 'alpha'],
+    ]);
+    const bufferB = createWorkbookBuffer([
+      ['id_b', 'city'],
+      [1, 'rome'],
+      [2, 'paris'],
+    ]);
+    const result = mergeWorkbooks([bufferA, bufferB], {
+      version: '1.0',
+      inputs: [{ id: 'a', path: 'a.xlsx' }, { id: 'b', path: 'b.xlsx' }],
+      sheet: { selector: { name: 'Sheet1' }, headerRow: 1 },
+      merge: {
+        mode: 'join',
+        joinType: 'inner',
+        joinKeyMaps: [{ key: '__join_1', byInput: { '0': 'id_a', '1': 'id_b' } }],
+      },
+      output: { format: 'xlsx', sheetName: 'Merged' },
+    });
+
+    expect(result.report.output.rowCount).toBe(1);
+  });
 });

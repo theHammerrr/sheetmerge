@@ -6,7 +6,10 @@ const baseSpec = {
   version: '1.0',
   inputs: [{ path: 'a.xlsx' }, { path: 'b.xlsx' }],
   sheet: { selector: { index: 0 }, headerRow: 1 },
-  merge: { mode: 'append' },
+  merge: {
+    mode: 'append',
+    joinKeyMaps: [{ key: '__join_1', byInput: { '0': 'id_a', '1': 'id_b' } }],
+  },
   output: { format: 'xlsx', fileName: 'out.xlsx', includeSource: false },
 } satisfies MergeSpec;
 
@@ -24,5 +27,6 @@ describe('applyMergeOverrides', () => {
     expect(result.inputs[0].path).toBe('c.xlsx');
     expect(result.output.fileName).toBe('new.xlsx');
     expect(result.output.includeSource).toBe(true);
+    expect(result.merge.joinKeyMaps).toEqual(baseSpec.merge.joinKeyMaps);
   });
 });

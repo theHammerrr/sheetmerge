@@ -19,9 +19,15 @@ export type ColumnsConfig = {
   rename?: Record<string, string>;
 };
 
+export type JoinKeyMap = {
+  key: string;
+  byInput: Record<string, string>;
+};
+
 export type MergeConfig = {
   mode: 'append' | 'union' | 'join';
   keys?: string[];
+  joinKeyMaps?: JoinKeyMap[];
   joinType?: 'inner' | 'left' | 'right' | 'full';
   columns?: ColumnsConfig;
 };

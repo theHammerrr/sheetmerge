@@ -50,7 +50,7 @@ const ConfigPanel: FC<Props> = ({ config, fileCount, onChange, onMerge }) => {
           />
         </label>
       ) : null}
-      {config.mode === 'join' ? <p className="hint">{t('config.joinHint')}</p> : null}
+
       {config.mode === 'join' ? (
         <JoinTypeSection joinType={config.joinType} onJoinTypeChange={setJoinType} />
       ) : null}

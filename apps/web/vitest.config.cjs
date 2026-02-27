@@ -10,6 +10,9 @@ module.exports = defineConfig({
       'src/functions/set-merge-result/set-merge-result.spec.ts',
       'src/functions/use-join-mapping/use-join-mapping.spec.ts',
       'src/functions/update-join-groups/update-join-groups.spec.ts',
+      'src/features/merge/application/build-web-merge-spec/build-web-merge-spec.spec.ts',
+      'src/features/merge/application/apply-web-merge-spec/apply-web-merge-spec.spec.ts',
+      'src/merge-spec-types/merge-spec-types.spec.ts',
     ],
     coverage: {
       provider: 'v8',

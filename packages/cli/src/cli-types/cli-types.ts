@@ -31,6 +31,7 @@ export type MergeSpec = {
   merge: {
     mode: MergeMode;
     keys?: string[];
+    joinKeyMaps?: Array<{ key: string; byInput: Record<string, string> }>;
     joinType?: MergeJoinType;
   };
   output: {

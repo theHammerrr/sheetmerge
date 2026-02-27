@@ -59,5 +59,7 @@ This schema is the single source of truth for CLI config and web UI export.
   - `append`: stack rows in order.
   - `union`: de-duplicate by `keys`.
   - `join`: join rows by `keys` (see `joinType`).
+- `merge.joinKeyMaps` can be used for join mode when key column names differ across inputs.
+  - Example: `{ "key": "__join_1", "byInput": { "0": "id_a", "1": "id_b" } }`.
 - `columns.include` and `columns.exclude` are mutually exclusive.
 - `sheet.selector` can be `{ "name": "Sheet1" }` or `{ "index": 0 }`.

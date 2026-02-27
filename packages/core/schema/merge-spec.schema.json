@@ -113,6 +113,12 @@
           "items": { "type": "string", "minLength": 1 },
           "description": "Column names used for union/join matching."
         },
+        "joinKeyMaps": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/joinKeyMap" },
+          "description": "Join key mapping by input index. Primarily used for join mode."
+        },
         "joinType": {
           "type": "string",
           "enum": ["inner", "left", "right", "full"],
@@ -125,6 +131,26 @@
         },
         "columns": {
           "$ref": "#/$defs/columns"
+        }
+      }
+    },
+    "joinKeyMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "byInput"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "byInput": {
+          "type": "object",
+          "minProperties": 2,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Map of input index (as string) to header name."
         }
       }
     },

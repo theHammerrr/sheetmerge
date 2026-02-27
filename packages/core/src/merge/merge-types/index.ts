@@ -5,6 +5,7 @@ export type {
   InputSpec,
   SheetSelector,
   ColumnsConfig,
+  JoinKeyMap,
   MergeConfig,
   OutputConfig,
   MergeSpec,

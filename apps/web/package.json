@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run -c vitest.config.cjs",
-    "test:coverage": "vitest run -c vitest.config.cjs --coverage"
+    "test:coverage": "vitest run -c vitest.config.cjs --coverage",
+    "test:e2e": "playwright test -c playwright.config.cjs"
   },
   "dependencies": {
     "i18next": "^23.12.1",
@@ -20,6 +21,7 @@
     "sheetmerge-core": "workspace:*"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@types/papaparse": "^5.3.15",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
