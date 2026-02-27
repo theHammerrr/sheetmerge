@@ -6,6 +6,7 @@ module.exports = defineConfig({
       'src/functions/parse-csv-file/parse-csv-file.spec.ts',
       'src/functions/run-local-merge/run-local-merge.spec.ts',
       'src/functions/run-local-join-merge/run-local-join-merge.spec.ts',
+      'src/functions/build-join-key-maps/build-join-key-maps.spec.ts',
       'src/functions/set-merge-error/set-merge-error.spec.ts',
       'src/functions/set-merge-result/set-merge-result.spec.ts',
       'src/functions/use-join-mapping/use-join-mapping.spec.ts',
